@@ -42,7 +42,9 @@ jobs:
       uses: home-assistant/actions/helpers/version@master
       with:
         type: ${{ env.BUILD_TYPE }}
-
+    - name: Replace image registry for build
+      run: |
+        sed -i 's|image: ghcr.io/home-assistant|image: ghcr.io/ha-china|g' build.yaml
   build:
     name: Build ${{ matrix.arch }} plugin
     needs: init
